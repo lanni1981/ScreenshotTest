@@ -1,0 +1,187 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ScreenShot">
+    <Style x:Key="DragBall" TargetType="{x:Type Shape}">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="Width" Value="8" />
+        <Setter Property="Height" Value="8" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Fill" Value="{x:Static local:ScreenShotConfig.SelectionBorderBrush}" />
+    </Style>
+    <Style x:Key="DragRect" TargetType="{x:Type Shape}">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="Width" Value="8" />
+        <Setter Property="Height" Value="8" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Fill" Value="{x:Static local:ScreenShotConfig.SelectionBorderBrush}" />
+    </Style>
+    <Style TargetType="{x:Type local:IndicatorObject}">
+        <Setter Property="BorderBrush" Value="{x:Static local:ScreenShotConfig.SelectionBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{x:Static local:ScreenShotConfig.SelectionBorderThickness}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:IndicatorObject}">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid Opacity="0">
+                                <!--  Move  -->
+                                <local:MoveThumb
+                                    Height="4"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Top"
+                                    Cursor="SizeAll" />
+                                <local:MoveThumb
+                                    Width="4"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Stretch"
+                                    Cursor="SizeAll" />
+                                <local:MoveThumb
+                                    Width="4"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Stretch"
+                                    Cursor="SizeAll" />
+                                <local:MoveThumb
+                                    Height="4"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Bottom"
+                                    Cursor="SizeAll" />
+                                <local:MoveThumb
+                                    Margin="4"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Cursor="SizeAll"
+                                    IsMoveByTargetCenter="True" />
+                                <!--  Resize (Corner)  -->
+                                <local:ResizeThumb
+                                    x:Name="leftTopResizeThumb"
+                                    Width="7"
+                                    Height="7"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Cursor="SizeNWSE"
+                                    Placement="LeftTop" />
+                                <local:ResizeThumb
+                                    x:Name="rightTopResizeThumb"
+                                    Width="7"
+                                    Height="7"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Cursor="SizeNESW"
+                                    Placement="RightTop" />
+                                <local:ResizeThumb
+                                    x:Name="leftBottomResizeThumb"
+                                    Width="7"
+                                    Height="7"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Bottom"
+                                    Cursor="SizeNESW"
+                                    Placement="LeftBottom" />
+                                <local:ResizeThumb
+                                    x:Name="rightBottomResizeThumb"
+                                    Width="7"
+                                    Height="7"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Bottom"
+                                    Cursor="SizeNWSE"
+                                    Placement="RightBottom" />
+                                <!--  Resize (Center)  -->
+                                <local:ResizeThumb
+                                    x:Name="leftCenterResizeThumb"
+                                    Width="7"
+                                    Height="7"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Cursor="SizeWE"
+                                    Placement="LeftCenter" />
+                                <local:ResizeThumb
+                                    x:Name="topCenterResizeThumb"
+                                    Width="7"
+                                    Height="7"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Top"
+                                    Cursor="SizeNS"
+                                    Placement="TopCenter" />
+                                <local:ResizeThumb
+                                    x:Name="rightCenterResizeThumb"
+                                    Width="7"
+                                    Height="7"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    Cursor="SizeWE"
+                                    Placement="RightCenter" />
+                                <local:ResizeThumb
+                                    x:Name="bottomCenterResizeThumb"
+                                    Width="7"
+                                    Height="7"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Bottom"
+                                    Cursor="SizeNS"
+                                    Placement="BottomCenter" />
+                            </Grid>
+                            <Grid
+                                Margin="-4"
+                                IsHitTestVisible="False"
+                                Opacity="1">
+                                <!--  Resize drag ball (corner)  -->
+                                <Ellipse
+                                    Margin="0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Style="{StaticResource DragBall}"
+                                    Visibility="{Binding ElementName=leftTopResizeThumb, Path=Visibility}" />
+                                <Ellipse
+                                    Margin="0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Style="{StaticResource DragBall}"
+                                    Visibility="{Binding ElementName=rightTopResizeThumb, Path=Visibility}" />
+                                <Ellipse
+                                    Margin="0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Bottom"
+                                    Style="{StaticResource DragBall}"
+                                    Visibility="{Binding ElementName=rightBottomResizeThumb, Path=Visibility}" />
+                                <Ellipse
+                                    Margin="0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Bottom"
+                                    Style="{StaticResource DragBall}"
+                                    Visibility="{Binding ElementName=leftBottomResizeThumb, Path=Visibility}" />
+                                <!--  Resize drag rect (center)  -->
+                                <Rectangle
+                                    Margin="-1,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource DragRect}"
+                                    Visibility="{Binding ElementName=leftCenterResizeThumb, Path=Visibility}" />
+                                <Rectangle
+                                    Margin="0,-1,0,0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Top"
+                                    Style="{StaticResource DragRect}"
+                                    Visibility="{Binding ElementName=topCenterResizeThumb, Path=Visibility}" />
+                                <Rectangle
+                                    Margin="0,0,-1,0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource DragRect}"
+                                    Visibility="{Binding ElementName=rightCenterResizeThumb, Path=Visibility}" />
+                                <Rectangle
+                                    Margin="0,0,0,-1"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Bottom"
+                                    Style="{StaticResource DragRect}"
+                                    Visibility="{Binding ElementName=bottomCenterResizeThumb, Path=Visibility}" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

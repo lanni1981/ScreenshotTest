@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "YsI6NST+Gu0IqK0PBXNXV1k/Sr4oNTQb7b/lmcPonmD3+A/uXeXy4tTV+ZTdjbKPu0TbtbOzzIoo5Xvy282sog==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\lou19\\Desktop\\ScreenshotTest\\ScreenShot\\ScreenShot.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lou19\\.nuget\\packages\\microsoft.win32.systemevents\\7.0.0\\microsoft.win32.systemevents.7.0.0.nupkg.sha512",
+    "C:\\Users\\lou19\\.nuget\\packages\\system.drawing.common\\7.0.0\\system.drawing.common.7.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
